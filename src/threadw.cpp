@@ -24,7 +24,7 @@ void disk_thread() {
             printf("Starting write\n");
             char img_file_nm[100] = "";
 
-            sprintf(img_file_nm,"./frames/mand_%d.bmp", framenum); // Might wanna have it write into a folder...
+            sprintf(img_file_nm,"./mand_%d.bmp", framenum); // Might wanna have it write into a folder...
 
             FILE* imageFile = fopen((char*)img_file_nm, "wb");
 
