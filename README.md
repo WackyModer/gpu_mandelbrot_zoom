@@ -18,3 +18,7 @@ The program is now a precompiled binary for 64 bit windows. If you want to compi
 edit config.txt to change things like iterations, max zoom, starting zoom, position, resolution, and enabling/disabling smoothing.
 
 ## If you have a fix or optimisation or fix, submit a PR, if theres an issue open an issue (or fix it yourself).
+
+### WIP features:
+1. Anti-Aliasing
+2. More accurate position inputs (Currently limited to ~6)
