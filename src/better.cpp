@@ -27,6 +27,8 @@ unsigned int maxframes = 0xffffffff; // ehhhhh
 int maxiter = 5000;//5000;
 
 
+int dosmoothing = 0;
+
 
 double x_pos = -0.743643887037158704752191506114774*10000000.0; // ok, this whole multiplication thing gives more decimal accuracy
 double y_pos = 0.131825904205311970493132056385139*1000000.0; // ok, this whole multiplication thing gives more decimal accuracy
@@ -86,7 +88,8 @@ int maxiter = int(dataa[0].pos.z);
 
 
 
-int mandel(double creal, double cimag){
+//int mandel(double creal, double cimag){
+float mandel(double creal, double cimag){
     int iter = 0;
 
     double zreal = 0.0;
@@ -111,6 +114,18 @@ int mandel(double creal, double cimag){
 
         //return maxiter;
     }
+
+    if(iter == maxiter) {
+        return maxiter;
+    }
+
+    if(dataa[1].pos.z == 1) {
+        vec2 z = vec2(float(zreal), float(zimag));
+        float sl = iter - log2(log2(dot(z,z))) + 4.0;
+
+        return sl;
+    }
+
     return iter;
 }
 
@@ -127,7 +142,9 @@ void main() {
     double real = (globalInvocationID.x - width / 2.0) / zoom / width + offset_x;
     double imag = (globalInvocationID.y - height / 2.0) / zoom / height + offset_y;
 
-    int meit = mandel(real, imag);
+    int aaf = 2;
+
+    float meit = mandel(real, imag);
 
     int r;
     int g;
@@ -215,7 +232,7 @@ void process_stuff() {
 
         std::vector<glm::vec4> data = {
                 { width, height, maxiter, zoooom },
-                { (double)x_pos, (double)y_pos, 0, 0},
+                { (double)x_pos, (double)y_pos, dosmoothing, 0},
         };
 
         GLuint computeBufSize_two = sizeof(glm::vec4) * data.size();
@@ -523,7 +540,17 @@ int load_config() {
                 return 1;
             }
 
-        }else if(i >= 17){
+        }else if(i == 17) {
+
+            if(cfg_int == 1){
+                dosmoothing = 1;
+                printf("Enabling smoothing\n");
+            }else{
+                printf("Not enabling smoothing\n");
+                dosmoothing = 0;
+            }
+
+        }else if(i >= 18){
             printf("\nThe config file is too long? (Has too many lines)\n");
             fclose(cfg_file);
             return 1;
@@ -532,7 +559,7 @@ int load_config() {
         i++;
     }
 
-    if(i != 17){
+    if(i != 18){
         printf("\nThe config file is too short? (Has too few lines)\n");
         fclose(cfg_file);
         return 1;
