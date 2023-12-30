@@ -10,6 +10,10 @@ LINKS = $(GLEW_LNK) $(GLFW_LNK)
 ELS = -luser32 -lkernel32 -lgdi32 -lglew32s -lglew32 -lglfw3dll -lglfw3
 
 all:
+	g++ -c -o ./better.obj ./src/better.cpp $(INCLUDES)
+	g++ ./better.obj $(LINKS) $(ELS) -o main.exe
+
+aellll:
 	g++ -c -o ./main_bmp.obj ./src/main_bmp.cpp $(INCLUDES)
 	g++ -c -o ./threadw.obj ./src/threadw.cpp $(INCLUDES)
 	g++ ./threadw.obj ./main_bmp.obj $(LINKS) $(ELS) -o main.exe
