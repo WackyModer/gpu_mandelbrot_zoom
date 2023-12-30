@@ -1,0 +1,17 @@
+# Ok, so file parsing is super bad
+# Follow the format, it should be OK.
+# DON'T DELETE THIS COMMENT BLOCK
+# So the lines numbered 1-10 are:
+# 1. width (has to be a multiple of 32) 
+# 2. height (has to be the same as width and multiple of 32)
+# 3. max iteration count 4. zoom speed (1.01-1.05 recommended)
+# 5. start zoom (0.25 recommended)  6. max zoom (How you control length)
+# 7. x offset 8. y offset
+1
+2
+3
+4
+5
+6
+7
+8
