@@ -11,11 +11,8 @@ First of all, it requires **you** to get all the libraries and put them in the r
 
 The makefile is set up for mingw64 on windows, so Mac isn't getting one, and I'm working on it for linux.
 
-
-First of all to change any settings you have to edit the main C++ file and the `shared.h` file. Its not ideal, and I'm working on a fix.
-
 Now once you have all the libraries and everything run `make` then run `main` to run the program.
 
-
+edit config.txt to change things like iterations, max zoom, starting zoom, position, and resolution.
 
 ## If you have a fix or optimisation submit a PR, if theres an issue open an issue.
