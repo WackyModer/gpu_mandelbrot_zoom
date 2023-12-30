@@ -142,8 +142,6 @@ void main() {
     double real = (globalInvocationID.x - width / 2.0) / zoom / width + offset_x;
     double imag = (globalInvocationID.y - height / 2.0) / zoom / height + offset_y;
 
-    int aaf = 2;
-
     float meit = mandel(real, imag);
 
     int r;
